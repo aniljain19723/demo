@@ -1,12 +1,20 @@
-
 const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = 3000;
 
+// Middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'views')));
 
+// Serve static assets (CSS/JS/images) from "public"
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve index.html on root route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
+// Handle registration form
 app.post('/register', (req, res) => {
   const { name, email, phone } = req.body;
   res.send(`
@@ -23,4 +31,8 @@ app.post('/register', (req, res) => {
   `);
 });
 
-app.listen(PORT, () => console.log(`App running on http://localhost:${PORT}`));
+// Start server
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ App running on http://0.0.0.0:${PORT}`);
+});
+
