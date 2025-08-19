@@ -4,7 +4,7 @@ pipeline {
 
   environment {
     // Set this to your Docker Hub repo (e.g. username/repo)
-    DOCKER_IMAGE = credentials('') ? '' : 'yourdockerhubusername/paytm-registration' // fallback text, edit if needed
+    DOCKER_IMAGE = credentials('') ? '' : 'itguruanil/paytm-registration' // fallback text, edit if needed
     // Docker Hub username/password stored in Jenkins as 'dockerhub-creds'
     DOCKER_HUB_CREDENTIALS = credentials('dockerhub-creds')
     // If you prefer to hardcode: DOCKER_IMAGE = 'yourdockerhubusername/paytm-registration'
