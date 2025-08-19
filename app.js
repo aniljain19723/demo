@@ -6,12 +6,9 @@ const PORT = 3000;
 // Middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static assets (CSS/JS/images) from "public"
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Serve index.html on root route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+  res.sendFile(path.join(__dirname, 'views', 'register.html'));
 });
 
 // Handle registration form

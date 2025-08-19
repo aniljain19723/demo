@@ -8,6 +8,9 @@ COPY . .
 # Stage 2 - Runtime with Nginx + Node
 FROM nginx:alpine
 
+# Install Node.js in the nginx container
+RUN apk add --no-cache nodejs npm
+
 WORKDIR /app
 # Copy app
 COPY --from=builder /usr/src/app /app
@@ -15,7 +18,7 @@ COPY --from=builder /usr/src/app /app
 COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
-EXPOSE 3000
 
-CMD sh -c "node app.js & nginx -g 'daemon off;'"
+# Start both services
+CMD sh -c "cd /app && node app.js & nginx -g 'daemon off;'"
 
