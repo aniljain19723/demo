@@ -36,7 +36,7 @@ pipeline {
             steps {
                 sh """
                 docker rm -f paytm-registration || true
-                docker run -d -p 8080:80 --name paytm-registration ${DOCKER_IMAGE}:latest
+                docker run -d -p 8081:80 --name paytm-registration ${DOCKER_IMAGE}:latest
                 """
             }
         }
